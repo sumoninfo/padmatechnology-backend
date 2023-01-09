@@ -1,42 +1,54 @@
-# padmatechnology-backend
+# Padma Technology Backend
 
 ## Installation
 
-Clone the repository
+### Clone the repository
 
     git clone https://github.com/sumoninfo/padmatechnology-backend.git
 
-Switch to the repo folder
+### Switch to the repo folder
 
     cd padmatechnology-backend
 
-Install all the dependencies using composer
+### Install all the dependencies using composer
 
     composer install
 
-Copy the example env file and make the required configuration changes in the .env file
+### Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
 
-Database configuration
+### Database configuration
 
-        DB_DATABASE=your_database_name
-        DB_USERNAME=your_user_name
-        DB_PASSWORD=your_password
+    DB_DATABASE=your_database_name
+    DB_USERNAME=your_user_name
+    DB_PASSWORD=your_password
 
-Generate a new application key
+### Mail configuration
+
+    MAIL_MAILER=
+    MAIL_HOST=
+    MAIL_PORT=
+    MAIL_USERNAME=
+    MAIL_PASSWORD=
+    MAIL_ENCRYPTION=
+    MAIL_FROM_ADDRESS=noreplay@example.com
+    MAIL_FROM_NAME="${APP_NAME}"
+
+### Firebase configuration
+
+    FIREBASE_SERVER_KEY=
+
+### Generate a new application key & Storage Link
 
     php artisan key:generate
-
-Generate a new application key
-
     php artisan storage:link
 
-Generate a new JWT authentication secret key
+### Create table & dummy data from seeder
 
     php artisan migrate --seed
 
-Start the local development server
+### Start the local development server
 
     php artisan serve
 
