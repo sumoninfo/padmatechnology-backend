@@ -19,18 +19,19 @@ class FrontendController extends Controller
      * @return AnonymousResourceCollection
      */
 
-    public function getRooms(Request $request, RoomRepository $repository)
+    public function getRooms(Request $request, RoomRepository $repository): AnonymousResourceCollection
     {
         return RoomResource::collection($repository->all($request));
     }
 
     /**
-     * @param Room $room
+     * @param $uuid
      * @param RoomRepository $repository
      * @return RoomResource
      */
-    public function getRoom(Room $room, RoomRepository $repository)
+    public function getRoom($uuid, RoomRepository $repository): RoomResource
     {
+        $room = $repository->findByUuid($uuid);
         return new RoomResource($repository->find($room));
     }
 

@@ -22,7 +22,8 @@ class RoomResource extends JsonResource
             'size'              => $this->size,
             'maximum_occupancy' => $this->maximum_occupancy,
             'description'       => $this->description,
-            'amenities'       => AmenityResource::collection($this->amenities),
+            'uuid'              => $this->uuid,
+            'amenities'         => AmenityResource::collection($this->amenities),
             'image'             => Storage::disk('public')->url("rooms/{$this->image}")
         ];
     }

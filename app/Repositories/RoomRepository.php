@@ -13,6 +13,10 @@ use Illuminate\Support\Str;
 
 class RoomRepository implements RoomRepositoryInterface
 {
+    /**
+     * @param Request $request
+     * @return LengthAwarePaginator
+     */
     public function all(Request $request): LengthAwarePaginator
     {
         $query = Room::query();
@@ -25,22 +29,44 @@ class RoomRepository implements RoomRepositoryInterface
         return $query->latest()->paginate($request->get('per_page', config('constant.pagination')));
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function store($data)
     {
         if (!empty($data['image'])) {
             $data['image'] = Helper::fileUpload($data['image']);
         }
         $data['uuid'] = Str::uuid()->toString();
-        $room = Room::create($data);
+        $room         = Room::create($data);
         $room->amenities()->attach(collect($data['amenities'])->pluck('id'));
         return $room;
     }
 
+    /**
+     * @param $model
+     * @return mixed
+     */
     public function find($model)
     {
         return $model;
     }
 
+    /**
+     * @param $uuid
+     * @return mixed
+     */
+    public function findByUuid($uuid)
+    {
+        return Room::where('uuid', $uuid)->first();
+    }
+
+    /**
+     * @param $model
+     * @param $data
+     * @return mixed
+     */
     public function update($model, $data)
     {
         if (!empty($data['image'])) {

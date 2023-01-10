@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
 Route::get('/rooms', [FrontendController::class, 'getRooms']);
-Route::get('/room/{room}', [FrontendController::class, 'getRoom']);
+Route::get('/room/{uuid}', [FrontendController::class, 'getRoom']);
 
 //Customer Login & Register
 Route::post('/register', [AuthController::class, 'register']);
