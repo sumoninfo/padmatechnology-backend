@@ -20,6 +20,7 @@ class CreateRoomsTable extends Migration
             $table->string('size')->nullable();
             $table->integer('maximum_occupancy')->default(0);
             $table->text('description')->nullable();
+            $table->uuid('uuid');
             $table->string('image')->nullable();
             $table->foreignId('created_by')->index()->comment("Created by")->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();

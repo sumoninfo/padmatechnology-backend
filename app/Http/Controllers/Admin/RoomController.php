@@ -40,10 +40,10 @@ class RoomController extends Controller
      */
     public function store(RoomRequest $request)
     {
-        $data = $request->only(['name', 'price', 'size', 'maximum_occupancy', 'description', 'image', 'amenities']);
-        $room = $this->repository->store($data);
-        return Helper::returnResponse("success", "Created successfully", $room);
         try {
+            $data = $request->only(['name', 'price', 'size', 'maximum_occupancy', 'description', 'image', 'amenities']);
+            $room = $this->repository->store($data);
+            return Helper::returnResponse("success", "Created successfully", $room);
         } catch (\Exception $e) {
             return Helper::returnResponse("error", $e->getMessage(), [], $e->getCode());
         }

@@ -22,7 +22,13 @@ class RoomFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'              => $this->faker->name(),
+            'price'             => $this->faker->randomFloat(2, 1000, 10000),
+            'size'              => $this->faker->name,
+            'maximum_occupancy' => $this->faker->randomNumber(1),
+            'description'       => $this->faker->paragraph,
+            'image'             => "{$this->faker->randomElement([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])}.png",
+            'uuid'              => $this->faker->uuid(),
         ];
     }
 }

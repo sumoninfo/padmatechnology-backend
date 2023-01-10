@@ -18,6 +18,7 @@ class Room extends Model
         'maximum_occupancy',
         'description',
         'image',
+        'uuid',
         'created_by'
     ];
 

@@ -9,6 +9,7 @@ use App\Models\Room;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class RoomRepository implements RoomRepositoryInterface
 {
@@ -29,6 +30,7 @@ class RoomRepository implements RoomRepositoryInterface
         if (!empty($data['image'])) {
             $data['image'] = Helper::fileUpload($data['image']);
         }
+        $data['uuid'] = Str::uuid()->toString();
         $room = Room::create($data);
         $room->amenities()->attach(collect($data['amenities'])->pluck('id'));
         return $room;
