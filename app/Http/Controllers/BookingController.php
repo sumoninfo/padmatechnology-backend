@@ -37,7 +37,7 @@ class BookingController extends Controller
         try {
             $booking = (new BookingService())->storeBooking($request);
             DB::commit();
-            return Helper::returnResponse("success", "Order Created successfully", $booking);
+            return Helper::returnResponse("success", "Booking Created successfully", $booking);
         } catch (\Exception $e) {
             DB::rollback();
             return Helper::returnResponse("success", $e->getMessage(), [], 500);
