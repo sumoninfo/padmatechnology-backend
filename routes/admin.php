@@ -19,15 +19,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:admin-api', 'scopes:ad
 
     Route::get('/dashboard', DashboardController::class);
 
-    Route::apiResources(['amenities' => AmenityController::class]);
-    Route::apiResources(['rooms' => RoomController::class]);
-    Route::apiResources(['customers' => CustomerController::class]);
+    Route::apiResources([
+        'amenities' => AmenityController::class,
+        'rooms'     => RoomController::class,
+    ]);
+    Route::apiResources(['customers' => CustomerController::class], ['only' => ['index', 'destroy']]);
 
-
-    //Orders
+    //Bookings
     Route::post('/status-update/{booking}/{status}', [BookingController::class, 'bookingStatusUpdate']);
     Route::get('/bookings', [BookingController::class, 'getBookings']);
     Route::get('/bookings/{booking}', [BookingController::class, 'show']);
+
     //admin profile
     Route::get('/profile/{admin}', [ProfileController::class, 'show']);
     Route::put('/profile/{admin}', [ProfileController::class, 'update']);
