@@ -26,6 +26,9 @@ class RoomRepository implements RoomRepositoryInterface
         if ($request->filled('sort_by')) {
             $query->orderBy('price', $request->sort_by);
         }
+        if (!$request->filled('per_page')) {
+            $request->request->add(['per_page' => $query->count()]);
+        }
         return $query->latest()->paginate($request->get('per_page', config('constant.pagination')));
     }
 
